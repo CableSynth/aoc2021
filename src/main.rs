@@ -6,9 +6,9 @@ fn solve_first(input: &str) -> u64 {
         .map(|x| x.parse().unwrap())
         .fold((0, i32::MAX), |(sum, previous), number| {
             (if number > previous { sum + 1 } else { sum }, number)
-        }).0
+        })
+        .0
 }
-
 
 fn main() {
     let filename = "src/input.txt";
@@ -30,9 +30,13 @@ fn main() {
     previous = 0;
     for i in 0..(data_split_on_newline.len()) {
         let compline = data_split_on_newline[i].parse::<i64>().expect("Bad Value");
-        let compline1 = data_split_on_newline[i+1].parse::<i64>().expect("Bad Value");
-        let compline2 = data_split_on_newline[i+2].parse::<i64>().expect("Bad Value");
-        let sum  = compline + compline1 + compline2;
+        let compline1 = data_split_on_newline[i + 1]
+            .parse::<i64>()
+            .expect("Bad Value");
+        let compline2 = data_split_on_newline[i + 2]
+            .parse::<i64>()
+            .expect("Bad Value");
+        let sum = compline + compline1 + compline2;
         // println!("{}", sum);
         if previous == 0 {
             previous = sum;
@@ -42,7 +46,7 @@ fn main() {
             total += 1;
         }
         previous = sum;
-        if i+3 == data_split_on_newline.len() {
+        if i + 3 == data_split_on_newline.len() {
             break;
         }
     }
